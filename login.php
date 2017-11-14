@@ -58,7 +58,9 @@ return true;
           <td><input type="button" id="btnSub" name="Button" value="ENTRAR" onClick="if (verifica()) document.getElementById('formLogin').submit();"></td>
         </tr>
       </table>
+      <!-- Desabilitado quando foi implementado login por LDAP
       <a href="#" onClick=" window.open('esqueceu.senha.php', 'Recuperação de Senha', 'height = 150, width = 350, left=400,top=400,screenX=400,screenY=400');">Esqueceu sua senha?</a> 
+      -->
       <?php if ($_GET["login"]){ ?>
       <div align="center" id="errorMsg">
         <?php 	if ($_GET["login"]=="nouser") echo "Usu&aacute;rio inexistente!";

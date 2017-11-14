@@ -67,6 +67,9 @@ if($autenticou > 0) {
 	$qry = T_query($qryStr);
 	T_free_result($qry);
 
+	if($row["matricula"] == NULL) {
+		echo "<script> document.location = 'regMatricula.php' </script>";	
+	}
 	echo "<script> document.location = 'index.php' </script>";
 }
 ?>

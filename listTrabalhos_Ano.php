@@ -47,7 +47,10 @@ else{
 	    case 5:	$url = "altera_status_trabalho";
 			$wintitle = "Alteração de status de trabalho";
 			break;
-			
+            case 6:     $url = "altera_titulo_trabalho"; 
+                        $wintitle = "Alteração de sttítulo de trabalho";
+                        break;
+	
             default:    $url = "rel_comentario";
                         $wintitle = "Comentários do trabalho";
         }

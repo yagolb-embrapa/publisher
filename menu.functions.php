@@ -88,6 +88,12 @@ function show_menu ( $id,  $permissoes, $funcao )
                                                                         Alterar status de trabalho</span></li>";
 
                                                 }
+                                                if($_SESSION["PERMISSAO"] & 4) {
+                                                        echo "<li><span onclick=\"top.location.href='selecionar_titulo_trabalho.php';\">
+                                                                        Alterar título de trabalho</span></li>";
+
+                                                }
+
 
 							
 					echo"

@@ -1,3 +1,8 @@
+<?php 
+	include("sessions.php"); 
+	if ($_GET["log"]=="logout") session_unset();
+	allow();
+?>
 <html>
 	<head>
 		<?php include("inc/header.php"); ?>

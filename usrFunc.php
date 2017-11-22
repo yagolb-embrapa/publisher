@@ -25,12 +25,14 @@ allow();
 <form id="frmUsr" name="frmUsr" action="javascript:if (verifica()){ajax.ajaxFormPost('divManip','usrDBFunc.php?op=1','frmUsr','Areas_Atuacao');}" method="post">
 <div style="border:#000066 1px groove; width:720px;" align="center">
   <h1>Cadastro de Usu&aacute;rio </h1>
+  <!--
+  // Desabilitado na implementacao do LDAP
   <div style="width:650px; border:#F1F1F1 1px solid; margin: 0 0 10px 0;">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="18%"><span title="Deve ter no m&iacute;nimo 4 caracteres">Login</span></td>
         <td width="82%"><input name="Login" type="text" id="Login" size="20" maxlength="20"> 
-          <a href="javascript://" onclick="if(document.getElementById('Login').value!=''){ajax.loadDiv('divDisp','dispCheck.php?login='+document.getElementById('Login').value); ajax.tempShow('divDisp',5000,'inline');}">Checar Disponibilidade</a> 
+          <a href="javascript://" onclick="if(document.getElementById('Login').value!=''){ajax.loadDiv('divDisp','dispCheck.php?login='+document.getElementById('Login').value); ajax.tempShow('divDisp',5000,'inline');}">Checar Disponibilidade</a>
         <div id="divDisp" style="display:inline;"></div></td>
       </tr>
       <tr>
@@ -41,15 +43,21 @@ allow();
         <td>Confirmar Senha </td>
         <td><input name="Passwd2" type="password" id="Passwd2" size="16" maxlength="12"></td>
       </tr>
+      
     </table>
   </div>
+  -->
   <div style="width:650px; border:#F1F1F1 1px solid; margin: 0 0 10px 0; padding: 0 0 5px 0;">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="18%"><span title="Deve ter no m&iacute;nimo 4 caracteres">Login/matrícula</span></td>
+        <td width="82%"><input name="Login" type="text" id="Login" size="20" maxlength="20"></td>
+      </tr>
       <tr>
         <td width="14%">Nome</td>
         <td width="36%"><input name="Nome" type="text" id="Nome2" /></td>
         <td width="14%">Endere&ccedil;o</td>
-        <td width="36%"><input name="Endereco2" type="text" id="Endereco2" /></td>
+        <td width="36%"><input name="Endereco" type="text" id="Endereco" /></td>
       </tr>
       <tr>
         <td><p>UF</p>        </td>
@@ -73,7 +81,7 @@ allow();
         <td>E-mail</td>
         <td><input name="Email" type="text" id="Email" /></td>
         <td>Telefone</td>
-        <td><input name="Telefone" type="text" id="Telefone" onkeydown="mascara(this,maskFone);" maxlength="14" /></td>
+        <td><input name="Telefone" type="text" id="Telefone" onkeydown="mascara(this,maskFone);" maxlength="15" /></td>
       </tr>
       <tr>
         <td>Cargo</td>
@@ -145,18 +153,6 @@ function verifica(){
 		alert("O Login deve conter apenas letras e/ou numeros.");
 		return false;
 	}
-	if (document.getElementById('Passwd').value.length==0){
-		alert('O campo "Senha" é um campo obrigatório');
-		return false;
-	}
-	if (document.getElementById('Passwd').value.length<5){
-		alert('O campo senha deve ter no mínimo 5 caracteres.');
-		return false;
-	}
-	if (document.getElementById('Passwd').value!=document.getElementById('Passwd2').value){
-		alert('A senha não confere com a confirmação de senha.');
-		return false;
-	}
 	if (document.getElementById('Email').value.length==0){
 		alert('O campo "E-Mail" é um campo obrigatório.');
 		return false;
@@ -180,6 +176,8 @@ function verifica(){
 <form id="frmUsrEdt" name="frmUsrEdt" action="javascript:if (verifica()){ ajax.ajaxFormPost('divManip','usrDBFunc.php?op=2&Id_Usr=<?php echo $rowData["Id_Usr"]; ?>','frmUsrEdt','Areas_Atuacao','password'); }" method="post">
   <div style="border:#000066 1px groove; width:720px;" align="center">
     <h1>Editar Dados de Usu&aacute;rio </h1>
+    <!--
+    // Desabilitado na implementacao do LDAP
     <div style="width:650px; border:#F1F1F1 1px solid; margin: 0 0 10px 0;">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -193,8 +191,13 @@ function verifica(){
         </tr>
       </table>
     </div>
+    -->
     <div style="width:650px; border:#F1F1F1 1px solid; margin: 0 0 10px 0; padding: 0 0 5px 0;">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      	<tr>
+          <td width="10%"><span title="Deve ter no m&iacute;nimo 4 caracteres">Login/matrícula</span></td>
+          <td width="90%"><input name="Login" type="text" id="Login" value="<?php echo utf8_encode($rowData["Login"]); ?>" size="20" maxlength="20" disabled="disabled"/></td>
+        </tr>
         <tr>
           <td width="14%">Nome</td>
           <td width="36%"><input name="Nome" value="<?php echo utf8_encode($rowData["Nome"]); ?>" type="text" id="Nome" /></td>
@@ -239,7 +242,7 @@ function verifica(){
         </tr>
         <tr>
           <td>Telefone</td>
-          <td><input name="Telefone" type="text" id="Telefone" value="<?php echo $rowData["Telefone"]; ?>" onkeydown="mascara(this,maskFone);" maxlength="14" /></td>
+          <td><input name="Telefone" type="text" id="Telefone" value="<?php echo $rowData["Telefone"]; ?>" onkeydown="mascara(this,maskFone);" maxlength="15" /></td>
           <td>E-mail</td>
           <td><input name="Email" type="text" id="Email" value="<?php echo $rowData["Email"]; ?>" /></td>
         </tr>

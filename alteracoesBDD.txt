@@ -1,6 +1,3 @@
 Tabela "USR":
-	criada coluna "matricula":
-		Tipo: VARCHAR
-		Tamanho: 20
-		Predefinido: NULL
-		Agrupamento: latin1_swedish_ci
+	Coluna: Passwd
+		Alterações: predefinida como NULL

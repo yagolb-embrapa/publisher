@@ -18,9 +18,14 @@ switch($_GET["op"]){
 
 
 case 1:	//comeando a inserao
-		$login = addslashes(strtolower($_POST["Login"]));
+
+		/* 
+			Desabilitado na implementacao do LDAP
+			$passwd = (!strlen($_POST["Passwd"]))?"NULL":"'".md5(sha1($_POST["Passwd"]))."'";
+			$login = addslashes(strtolower($_POST["Login"]));
+		*/
+		$login = addslashes($_POST["Login"]);
 		$login = (!strlen($login))?"NULL":"'".T_escape_string($login)."'";
-		$passwd = (!strlen($_POST["Passwd"]))?"NULL":"'".md5(sha1($_POST["Passwd"]))."'";
 		$nome = (!strlen($_POST["Nome"]))?"NULL":"'".T_escape_string($_POST["Nome"])."'";
 		$endereco = (!strlen($_POST["Endereco"]))?"NULL":"'".T_escape_string($_POST["Endereco"])."'";
 		$telefone = (!strlen($_POST["Telefone"]))?"NULL":"'".$_POST["Telefone"]."'";
@@ -30,10 +35,14 @@ case 1:	//comeando a inserao
 		$id_areas_atuacao = $_POST["Areas_Atuacao"];
 		if ($id_areas_atuacao) $id_areas_atuacao = explode("#",$id_areas_atuacao);
 		
-		
-		$qryStr = "INSERT INTO `USR` (Id_Municipio,Id_Cargo,Login,Passwd,Nome,Endereco,Email,Telefone)
-		VALUES (".$id_municipio.",".$id_cargo.",".$login.",".$passwd.",".$nome.",".$endereco.",".$email.",".$telefone.");";
-	
+		/*
+			Desabilitado na implementacao do LDAP
+			$qryStr = "INSERT INTO `USR` (Id_Municipio,Id_Cargo,Login,Passwd,Nome,Endereco,Email,Telefone)
+			VALUES (".$id_municipio.",".$id_cargo.",".$login.",".$passwd.",".$nome.",".$endereco.",".$email.",".$telefone.");";
+		*/
+
+		$qryStr = "INSERT INTO `USR` (Id_Municipio,Id_Cargo,Login,Nome,Endereco,Email,Telefone)
+		VALUES (".$id_municipio.",".$id_cargo.",".$login.",".$nome.",".$endereco.",".$email.",".$telefone.");";
 				
 $qry = T_query($qryStr);
 		if ($qry){

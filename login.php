@@ -51,7 +51,7 @@ return true;
         </tr>
         <tr>
           <td height="25">Senha</td>
-          <td><input name="senha" type="password" maxlength="12" id="senha" onKeyPress="handleEnter (event)"></td>
+          <td><input name="senha" type="password" maxlength="25" id="senha" onKeyPress="handleEnter (event)"></td>
         </tr>
         <tr>
           <td height="22">&nbsp;</td>

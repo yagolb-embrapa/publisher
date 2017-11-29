@@ -20,7 +20,7 @@ function intPOST( $valor)
 
 
 // FUNCAO PARA VERIFICAR SE TODOS OS REVISORES JÁ POSTARAM AS REVISOES
-function checkRevisoes($idtrabalho, $data_operacao){
+function checkRevisoes($idtrabalho){
 
 //pega o numero total de revisores de tal trabalho
 $qry = T_query("SELECT COUNT(*) AS Cont FROM REVISORES WHERE Id_Trabalho = '".$idtrabalho."';");
@@ -31,7 +31,7 @@ T_free_result($qry);
 
 //pega o numero de revisoes feitas pra tal acompanhamento
 //$sql = "SELECT COUNT(*) AS Cont1 FROM REVISOES WHERE Id_Trabalho = '".$idtrabalho."' AND Data_Operacao = '".$data_operacao."';";
-$sql = "SELECT COUNT(*) AS Cont1 FROM REVISOES WHERE Id_Trabalho = '".$idtrabalho."' AND Data_Operacao = '".$data_operacao."';";
+$sql = "SELECT COUNT(*) AS Cont1 FROM REVISOES WHERE Id_Trabalho = '".$idtrabalho."';";
 $qry = T_query($sql);
 $row = T_fetch_array($qry);
 $total_revisoes = $row["Cont1"];
@@ -127,7 +127,7 @@ $ext_arquiv = '';
 	if ($_POST["Editar"])	$sql = "UPDATE REVISOES SET 
 	Publico_Alvo_Outros='".$publico_alvo_outros."', Originalidade=".$originalidade.", Densidade=".$densidade.", Redacao=".$redacao.",  Referencias=".$referencias.", Aceitacao=".$aceitacao.", Compreensao=".$compreensao.",  Coment_Autor = '".$comentautor."', Coment_CP = '".$comentcp."',arquivo='".$arquivoNome."' WHERE Id_Trabalho = '".$idtrabalho."' AND Id_Usr = ".$idusr." AND Data_Operacao = '".$dataoperacao."';";
 	
-	else	$sql = "INSERT INTO REVISOES(Id_Trabalho, Data_Operacao, Id_Usr,  Publico_Alvo_Outros, Originalidade, Densidade, Redacao,  Referencias, Aceitacao, Compreensao, Coment_Autor, Coment_CP,arquivo,revisao) VALUES 	('".$idtrabalho."','".$dataoperacao."',".$idusr.",   '".$publico_alvo_outros."' ,  ".$originalidade." , ".$densidade." ,  ".$redacao." ,   ".$referencias." ,  ".$aceitacao." ,  ".$compreensao." , '".$comentautor."','".$comentcp."','".$arquivoNome."','".$revisao."');";
+	else	$sql = "INSERT INTO REVISOES(Id_Trabalho, Data_Operacao, Id_Usr,  Publico_Alvo_Outros, Originalidade, Densidade, Redacao,  Referencias, Aceitacao, Compreensao, Coment_Autor, Coment_CP,arquivo,revisao) VALUES 	('".$idtrabalho."',NOW(),".$idusr.",   '".$publico_alvo_outros."' ,  ".$originalidade." , ".$densidade." ,  ".$redacao." ,   ".$referencias." ,  ".$aceitacao." ,  ".$compreensao." , '".$comentautor."','".$comentcp."','".$arquivoNome."','".$revisao."');";
 
 
 	$query_publico_alvo = "DELETE FROM OCORRENCIA_PUBLICO_ALVO WHERE Id_Trabalho = '".$idtrabalho."' AND Id_Usr='".$idusr."' AND Data_Operacao='".$dataoperacao."'";
@@ -170,7 +170,7 @@ $ext_arquiv = '';
 	//$revisao = $versao;
 
 
-	if (checkRevisoes($idtrabalho,$dataoperacao) || $flag_correcao){
+	if (checkRevisoes($idtrabalho) || $flag_correcao){
 
 		$rowlim = T_fetch_array(T_query("SELECT Data_Limite FROM ACOMPANHAMENTO WHERE Id_Trabalho = '".$idtrabalho."' ORDER BY Data_Operacao DESC LIMIT 1"));
 		$sql1 = "INSERT INTO ACOMPANHAMENTO (Data_Operacao, Id_Trabalho, Id_Status_Trabalho, Data_Limite) VALUES 

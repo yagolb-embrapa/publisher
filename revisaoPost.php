@@ -127,7 +127,7 @@ $ext_arquiv = '';
 	if ($_POST["Editar"])	$sql = "UPDATE REVISOES SET 
 	Publico_Alvo_Outros='".$publico_alvo_outros."', Originalidade=".$originalidade.", Densidade=".$densidade.", Redacao=".$redacao.",  Referencias=".$referencias.", Aceitacao=".$aceitacao.", Compreensao=".$compreensao.",  Coment_Autor = '".$comentautor."', Coment_CP = '".$comentcp."',arquivo='".$arquivoNome."' WHERE Id_Trabalho = '".$idtrabalho."' AND Id_Usr = ".$idusr." AND Data_Operacao = '".$dataoperacao."';";
 	
-	else	$sql = "INSERT INTO REVISOES(Id_Trabalho, Data_Operacao, Id_Usr,  Publico_Alvo_Outros, Originalidade, Densidade, Redacao,  Referencias, Aceitacao, Compreensao, Coment_Autor, Coment_CP,arquivo,revisao) VALUES 	('".$idtrabalho."',NOW(),".$idusr.",   '".$publico_alvo_outros."' ,  ".$originalidade." , ".$densidade." ,  ".$redacao." ,   ".$referencias." ,  ".$aceitacao." ,  ".$compreensao." , '".$comentautor."','".$comentcp."','".$arquivoNome."','".$revisao."');";
+	else	$sql = "INSERT INTO REVISOES(Id_Trabalho, Data_Operacao, Id_Usr,  Publico_Alvo_Outros, Originalidade, Densidade, Redacao,  Referencias, Aceitacao, Compreensao, Coment_Autor, Coment_CP,arquivo,revisao) VALUES 	('".$idtrabalho."','".$dataoperacao."',".$idusr.",   '".$publico_alvo_outros."' ,  ".$originalidade." , ".$densidade." ,  ".$redacao." ,   ".$referencias." ,  ".$aceitacao." ,  ".$compreensao." , '".$comentautor."','".$comentcp."','".$arquivoNome."','".$revisao."');";
 
 
 	$query_publico_alvo = "DELETE FROM OCORRENCIA_PUBLICO_ALVO WHERE Id_Trabalho = '".$idtrabalho."' AND Id_Usr='".$idusr."' AND Data_Operacao='".$dataoperacao."'";

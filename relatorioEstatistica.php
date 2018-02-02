@@ -123,7 +123,7 @@ function rel_print(){
 								$trabCt = 0;
 								
 								while ($rowTrab = T_fetch_array($qryTrab)){
-									$sqlAcomp = "SELECT * FROM ACOMPANHAMENTO WHERE Id_Trabalho = '".$rowTrab[0]."' AND UNIX_TIMESTAMP(Data_Operacao) >= ".$timeini." AND UNIX_TIMESTAMP(Data_Operacao) <= ".$timefim;
+									$sqlAcomp = "SELECT * FROM ACOMPANHAMENTO WHERE Id_Trabalho = '".$rowTrab[0]."' AND (Id_Status_Trabalho = '10' OR Id_Status_Trabalho = '9' OR Id_Status_Trabalho = '11') AND UNIX_TIMESTAMP(Data_Operacao) >= ".$timeini." AND UNIX_TIMESTAMP(Data_Operacao) <= ".$timefim." ";
 									$qryAcomp = T_query($sqlAcomp);
 									if (T_num_rows($qryAcomp)) $trabCt++;
 								}
@@ -284,7 +284,7 @@ function rel_print(){
 								
 								unset($trabTitle);
 								while ($rowTrab = T_fetch_array($qryTrab)){
-									$sqlAcomp = "SELECT DISTINCT TRABALHOS.Titulo, Id_Trabalho FROM ACOMPANHAMENTO INNER JOIN TRABALHOS USING (Id_Trabalho) WHERE Id_Trabalho = '".$rowTrab[0]."' AND UNIX_TIMESTAMP(Data_Operacao) >= ".$timeini." AND UNIX_TIMESTAMP(Data_Operacao) <= ".$timefim;
+									$sqlAcomp = "SELECT DISTINCT TRABALHOS.Titulo, Id_Trabalho FROM ACOMPANHAMENTO INNER JOIN TRABALHOS USING (Id_Trabalho) WHERE Id_Trabalho = '".$rowTrab[0]."' AND (Id_Status_Trabalho = '10' OR Id_Status_Trabalho = '9' OR Id_Status_Trabalho = '11') AND UNIX_TIMESTAMP(Data_Operacao) >= ".$timeini." AND UNIX_TIMESTAMP(Data_Operacao) <= ".$timefim;
 									$qryAcomp = T_query($sqlAcomp);
 									if (T_num_rows($qryAcomp)){
 										$rowAcomp = T_fetch_array($qryAcomp);
